@@ -1,0 +1,10 @@
+components:
+  schemas:
+    VoteResource:
+      type: object
+      properties:
+        candidate:
+          $ref: "#/components/schemas/CandidateResource"
+      required:
+        - candidate
+      additionalProperties: false

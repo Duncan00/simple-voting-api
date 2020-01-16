@@ -1,0 +1,28 @@
+paths:
+  /v1/campaigns:
+    get:
+      tags:
+        - Campaigns
+      summary: Get campaigns
+      parameters:
+        - in: query
+          name: hkid
+          description: If provided, campaigns[n].candidates[n].voted will be true for those candidates this hkid voted
+          schema:
+            $ref: "#/components/schemas/Hkid"
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    $ref: "#/components/schemas/Meta20000"
+                  data:
+                    $ref: "#/components/schemas/CampaignResource"
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response42201'

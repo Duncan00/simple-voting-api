@@ -1,0 +1,32 @@
+components:
+  schemas:
+    CampaignResource:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: c134654f-3069-469f-93dd-eaac270ad350
+        title:
+          type: string
+          example:  Who is the best NBA player in the history
+          minLength: 1
+        start_date:
+          type: string
+          format: date
+          example: 2019-01-01
+        end_date:
+          type: string
+          format: date
+          example: 2019-01-31
+        candidates:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/CandidateResource"
+      required:
+        - title
+        - start_date
+        - end_date
+        - candidates
+      additionalProperties: false

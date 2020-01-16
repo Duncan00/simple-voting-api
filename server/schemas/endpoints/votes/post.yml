@@ -1,0 +1,36 @@
+paths:
+  /v1/campaigns/{id}/votes:
+    post:
+      tags:
+        - Votes
+      summary: Vote a candidate of a campaign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hkid:
+                  $ref: "#/components/schemas/Hkid"
+                candidate:
+                  $ref: "#/components/schemas/RequestCandidateResource"
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta20100'
+                  data:
+                    $ref: "#/components/schemas/VoteResource"
+                additionalProperties: false
+                required:
+                  - meta
+                  - data
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response42201'

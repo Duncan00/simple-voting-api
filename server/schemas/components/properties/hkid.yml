@@ -1,0 +1,6 @@
+components:
+  schemas:
+    Hkid:
+      type: string
+      pattern: /^[A-Z]{1,2}[0-9]{6}\([A0-9]\)$/
+      example: A123456(3)

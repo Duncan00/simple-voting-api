@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: simple-voting
-  description: Swagger documentation for simple-voting
+  title: Simple Voting
+  description: Swagger documentation for Simple Voting
   version: 1.0.0
 servers:
   - url: http://localhost:9023

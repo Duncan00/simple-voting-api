@@ -1,9 +1,0 @@
-components:
-  schemas:
-    RequestId:
-      in: header
-      name: Request-Id
-      description: Request ID for logging & Idempotency of this request
-      required: false
-      schema:
-        type: string

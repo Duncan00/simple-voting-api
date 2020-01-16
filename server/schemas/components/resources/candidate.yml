@@ -1,0 +1,24 @@
+components:
+  schemas:
+    CandidateResource:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Name of this choice
+          example: Michael Jordan
+        number_of_votes:
+          type: integer
+          minimum: 0
+          description: Number of votes for this choice
+          example: 193839
+        voted:
+          type: boolean
+          description: To show the current requesting user has voted this candidate or not
+          example: false
+      required:
+        - name
+        - number_of_votes
+        - voted
+      additionalProperties: false
