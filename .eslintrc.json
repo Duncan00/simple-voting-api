@@ -1,0 +1,11 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "extends": [
+    "prettier"
+  ],
+  "env": {
+    "jest": true
+  }
+}

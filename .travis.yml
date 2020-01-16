@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "10"
+sudo: false
+env:
+  - CACHE_DIR=cache BUILDER=travis_ci
+cache:
+  directories:
+    - $CACHE_DIR
+install:
+  - . ./scripts/ci/setup.sh
+script:
+  - . ./scripts/ci/run.sh
+after_script:
+  - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN > /dev/null

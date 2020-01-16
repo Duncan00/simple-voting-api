@@ -1,0 +1,19 @@
+components:
+  schemas:
+    Meta20200:
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 20200
+          description: http status
+          example: 20200
+        message:
+          type: string
+          description: http message
+          example: Accepted
+      required:
+        - code
+        - message
+      additionalProperties: false

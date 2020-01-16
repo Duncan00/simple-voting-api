@@ -1,0 +1,29 @@
+components:
+  schemas:
+    Meta40000:
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 40000
+          description: http status
+          example: 40000
+        type:
+          type: string
+          description: error type
+          example: BadRequestError
+        message:
+          type: string
+          description: http message
+          example: Bad Request
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetaErrorsItem'
+      required:
+        - code
+        - type
+        - message
+        - errors
+      additionalProperties: false

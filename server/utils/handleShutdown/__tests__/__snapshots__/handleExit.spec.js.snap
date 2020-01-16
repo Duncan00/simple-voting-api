@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleExit should gracefully shutdown: logger.info 1`] = `
+Array [
+  Array [
+    "Signal received application starts shutdown",
+  ],
+  Array [
+    "Application had gracefully shutdown",
+  ],
+]
+`;
+
+exports[`handleExit should gracefully shutdown: logger.info 2`] = `
+Array [
+  Array [
+    "Signal received application starts shutdown",
+  ],
+  Array [
+    "Application had gracefully shutdown",
+  ],
+]
+`;
+
+exports[`handleExit should gracefully shutdown: process.exit 1`] = `
+Array [
+  Array [],
+]
+`;
+
+exports[`handleExit should gracefully shutdown: redis.quit 1`] = `Array []`;
+
+exports[`handleExit should skip if already shutting down: logger.info 1`] = `
+Array [
+  Array [
+    "Signal received application starts shutdown",
+  ],
+]
+`;
+
+exports[`handleExit should skip if already shutting down: logger.info 2`] = `
+Array [
+  Array [
+    "Signal received application starts shutdown",
+  ],
+]
+`;
+
+exports[`handleExit should skip if already shutting down: process.exit 1`] = `Array []`;
+
+exports[`handleExit should skip if already shutting down: redis.quit 1`] = `Array []`;

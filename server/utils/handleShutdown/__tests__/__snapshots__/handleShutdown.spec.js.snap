@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleShutdown should listen to shutdown signal and setup: process.on 1`] = `
+Array [
+  Array [
+    "SIGINT",
+    [Function],
+  ],
+  Array [
+    "SIGTERM",
+    [Function],
+  ],
+]
+`;

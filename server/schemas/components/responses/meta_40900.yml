@@ -1,0 +1,29 @@
+components:
+  schemas:
+    Meta40900:
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 40900
+          description: http status
+          example: 40900
+        type:
+          type: string
+          description: error type
+          example: ConflictError
+        message:
+          type: string
+          description: http message
+          example: Conflict
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetaErrorsItem'
+      required:
+        - code
+        - type
+        - message
+        - errors
+      additionalProperties: false

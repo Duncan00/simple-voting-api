@@ -1,0 +1,19 @@
+components:
+  schemas:
+    Meta20000:
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 20000
+          description: http status
+          example: 20000
+        message:
+          type: string
+          description: http message
+          example: OK
+      required:
+        - code
+        - message
+      additionalProperties: false

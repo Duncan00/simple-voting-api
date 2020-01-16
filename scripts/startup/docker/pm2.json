@@ -1,0 +1,11 @@
+[
+  {
+    "name": "simple-voting",
+    "script": "server/server.js",
+    "instance_var": "INSTANCE_ID",
+    "env": {
+      "PORT": 9003
+    },
+    "kill_timeout": 120000
+  }
+]

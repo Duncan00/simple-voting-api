@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Response40401:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta40401'
+        data:
+          type: object
+      additionalProperties: false
+      required:
+        - meta
+        - data

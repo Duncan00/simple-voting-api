@@ -1,0 +1,30 @@
+paths:
+  /v1/whoami:
+    get:
+      tags:
+        - whoami
+      summary: whoami
+      operationId: whoami
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta20000'
+                  data:
+                    type: object
+                    properties:
+                      build_version:
+                        type: string
+                        description: 'Jenkins build version'
+                        example: 'master-build-102'
+                    required:
+                      - build_version
+                    additionalProperties: false
+                additionalProperties: false
+                required:
+                  - meta
+                  - data

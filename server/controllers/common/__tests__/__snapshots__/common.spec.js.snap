@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Common controller whoami successfully call GET: GET whoami success 1`] = `
+Object {
+  "data": Object {
+    "build": "Unknown",
+    "service": "simple-voting",
+    "version": "v1",
+  },
+  "meta": Object {
+    "code": 20000,
+    "message": "OK",
+  },
+}
+`;

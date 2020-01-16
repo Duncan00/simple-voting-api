@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`throwIfFalsy should throw if not object: error snapshot - not an object 1`] = `"please wrap you param in a {} so that the function knows the var name by object key"`;
+
+exports[`throwIfFalsy should throw if object contains falsy values: error snapshot - object contains falsy 1`] = `"variable is falsy: invalid"`;

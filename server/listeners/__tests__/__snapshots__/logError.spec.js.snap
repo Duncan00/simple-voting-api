@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logError ctx status missing -> use err.status: message from message 1`] = `
+Array [
+  Array [
+    Object {
+      "MONITOR_EVENT_KEY": "unexpected-internal-error",
+      "details": "",
+      "httpRequest": Object {
+        "latency": "response_time",
+        "referer": "referer",
+        "remoteIp": "ip",
+        "requestMethod": "method",
+        "requestUrl": "href",
+        "responseSize": "length",
+        "status": "status-from-error",
+        "userAgent": "user-agent",
+      },
+      "message": "message in error.message",
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "user": "id",
+    },
+  ],
+]
+`;
+
+exports[`logError ctx with user id 1`] = `
+Array [
+  Array [
+    Object {
+      "MONITOR_EVENT_KEY": "unexpected-internal-error",
+      "details": "message in details",
+      "httpRequest": Object {
+        "latency": undefined,
+        "referer": "referer",
+        "remoteIp": "ip",
+        "requestMethod": "method",
+        "requestUrl": "href",
+        "responseSize": "length",
+        "status": "status-from-ctx",
+        "userAgent": "user-agent",
+      },
+      "message": "message in details",
+      "request_cycle_trace_id": undefined,
+      "user": "user-id",
+    },
+  ],
+]
+`;
+
+exports[`logError error without stack and message: message from details 1`] = `
+Array [
+  Array [
+    Object {
+      "MONITOR_EVENT_KEY": "unexpected-internal-error",
+      "details": "message in details",
+      "httpRequest": Object {
+        "latency": "response_time",
+        "referer": "referer",
+        "remoteIp": "ip",
+        "requestMethod": "method",
+        "requestUrl": "href",
+        "responseSize": "length",
+        "status": "status-from-ctx",
+        "userAgent": "user-agent",
+      },
+      "message": "message in details",
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "user": "id",
+    },
+  ],
+]
+`;
+
+exports[`logError error without stack: message from message 1`] = `
+Array [
+  Array [
+    Object {
+      "MONITOR_EVENT_KEY": "unexpected-internal-error",
+      "details": "",
+      "httpRequest": Object {
+        "latency": "response_time",
+        "referer": "referer",
+        "remoteIp": "ip",
+        "requestMethod": "method",
+        "requestUrl": "href",
+        "responseSize": "length",
+        "status": "status-from-ctx",
+        "userAgent": "user-agent",
+      },
+      "message": "message in error.message",
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "user": "id",
+    },
+  ],
+]
+`;
+
+exports[`logError should match snapshot when call logger.error(), error.stack 1`] = `
+Array [
+  Array [
+    Object {
+      "MONITOR_EVENT_KEY": "unexpected-internal-error",
+      "details": "",
+      "httpRequest": Object {
+        "latency": "response_time",
+        "referer": "referer",
+        "remoteIp": "ip",
+        "requestMethod": "method",
+        "requestUrl": "href",
+        "responseSize": "length",
+        "status": "status-from-ctx",
+        "userAgent": "user-agent",
+      },
+      "message": "mock-stack",
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "user": "id",
+    },
+  ],
+]
+`;

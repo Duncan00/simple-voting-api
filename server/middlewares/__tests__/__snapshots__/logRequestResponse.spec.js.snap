@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logRequestResponse list of skip routes 1`] = `
+Array [
+  "whoami",
+  "healthz",
+]
+`;
+
+exports[`logRequestResponse logRequestResponse with options: logger.info calls with options 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "accessing path",
+      "path": "/whatever",
+      "query": Object {
+        "product": "product",
+      },
+      "request": Object {
+        "body": Object {
+          "mock_post_payload": true,
+        },
+      },
+      "request_body": Object {
+        "mock_post_payload": true,
+      },
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "user_id": "x-authorization-sub",
+    },
+  ],
+  Array [
+    Object {
+      "message": "returning response",
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "response_body": "mock_body",
+      "response_status": "mock_status",
+    },
+  ],
+]
+`;
+
+exports[`logRequestResponse logRequestResponse: logger.info calls 1`] = `
+Array [
+  Array [
+    Object {
+      "message": "accessing path",
+      "path": "/whatever",
+      "query": Object {
+        "product": "product",
+      },
+      "request": Object {
+        "body": Object {
+          "mock_post_payload": true,
+        },
+      },
+      "request_body": Object {
+        "mock_post_payload": true,
+      },
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "user_id": "x-authorization-sub",
+    },
+  ],
+  Array [
+    Object {
+      "message": "returning response",
+      "request_cycle_trace_id": "request_cycle_trace_id",
+      "response_body": "mock_body",
+      "response_status": "mock_status",
+    },
+  ],
+]
+`;

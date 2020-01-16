@@ -1,0 +1,29 @@
+components:
+  schemas:
+    Meta42201:
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 42201
+          description: http status
+          example: 42201
+        type:
+          type: string
+          description: error type
+          example: SchemaValidationError
+        message:
+          type: string
+          description: http message
+          example: Schema Validation Error
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetaErrorsItem'
+      required:
+        - code
+        - type
+        - message
+        - errors
+      additionalProperties: false

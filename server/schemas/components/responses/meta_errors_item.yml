@@ -1,0 +1,16 @@
+components:
+  schemas:
+    MetaErrorsItem:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Error path
+          example: error.path
+        info:
+          type: string
+          description: Error detail
+          example: Error detail
+      required:
+        - path
+        - info

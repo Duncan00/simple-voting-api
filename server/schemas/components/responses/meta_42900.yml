@@ -1,0 +1,29 @@
+components:
+  schemas:
+    Meta42900:
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 42900
+          description: http status
+          example: 42900
+        type:
+          type: string
+          description: error type
+          example: TooManyRequestsError
+        message:
+          type: string
+          description: http message
+          example: Too Many Requests
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetaErrorsItem'
+      required:
+        - code
+        - type
+        - message
+        - errors
+      additionalProperties: false

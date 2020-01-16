@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(AUTH_ERROR): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40100,
+      "errors": Array [],
+      "message": "Authentication Error.",
+      "type": "AuthenticationError",
+    },
+  },
+  "status": 401,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(CONFLICT): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40900,
+      "errors": Array [],
+      "message": "Conflict.",
+      "type": "Conflict",
+    },
+  },
+  "status": 409,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(NOT_FOUND): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40400,
+      "errors": Array [],
+      "message": "Resource is not found.",
+      "type": "NotFound",
+    },
+  },
+  "status": 404,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(SCHEMA_VALIDATION_ERROR): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42201,
+      "errors": Array [],
+      "message": "Schema Validation Error",
+      "type": "SchemaValidationError",
+    },
+  },
+  "status": 422,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(UNPROCESSABLE_ENTITY): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42200,
+      "errors": Array [],
+      "message": "Unprocessable Entity.",
+      "type": "UnprocessableEntity",
+    },
+  },
+  "status": 422,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(AUTH_ERROR): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40100,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Authentication Error.",
+      "type": "AuthenticationError",
+    },
+  },
+  "status": 401,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(CONFLICT): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40900,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Conflict.",
+      "type": "Conflict",
+    },
+  },
+  "status": 409,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(NOT_FOUND): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40400,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Resource is not found.",
+      "type": "NotFound",
+    },
+  },
+  "status": 404,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(SCHEMA_VALIDATION_ERROR): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42201,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Schema Validation Error",
+      "type": "SchemaValidationError",
+    },
+  },
+  "status": 422,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(UNPROCESSABLE_ENTITY): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42200,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Unprocessable Entity.",
+      "type": "UnprocessableEntity",
+    },
+  },
+  "status": 422,
+}
+`;
+
+exports[`handleError handleUnknownError for err.details not an array, hide it in http reponse: > http response of the error 1`] = `
+Object {
+  "data": Object {},
+  "meta": Object {
+    "code": 50000,
+    "errors": Array [],
+    "message": "Internal Error.",
+    "type": "InternalError",
+  },
+}
+`;
+
+exports[`handleError meta_code globally unique: list of meta_codes 1`] = `
+Array [
+  40900,
+  50000,
+  42201,
+  40100,
+  40400,
+  42200,
+]
+`;
+
+exports[`handleError schema validation error: rendered error response 1`] = `Object {}`;

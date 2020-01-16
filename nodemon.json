@@ -1,0 +1,13 @@
+{
+  "verbose": false,
+  "ignore": [
+    "node_modules",
+    "log/*",
+    ".idea/*"
+  ],
+  "watch": [
+    "server",
+    "config"
+  ],
+  "ext": "js json yaml yml"
+}
