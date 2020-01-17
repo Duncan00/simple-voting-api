@@ -15,6 +15,7 @@ async function initServer() {
 		const loggerFactory = require('./services/loggerFactory/index');
 		const winston = require('winston');
 		const Koa = require('koa');
+		const getRedis = require('./services/redis/getRedis');
 		const router = require('./router');
 
 		root_logger = loggerFactory({
@@ -22,10 +23,15 @@ async function initServer() {
 			log_level: config.log_level,
 			env: config.env
 		});
-		const koa_instance = new Koa();
 
+		const redis = await getRedis({
+			nodes: config.services.redis.nodes,
+			logger: root_logger
+		});
+
+		const koa_instance = new Koa();
 		return require('./makeApp')({
-			router: router(),
+			router: router({redis}),
 			logger: root_logger,
 			config,
 			app: koa_instance

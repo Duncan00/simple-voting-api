@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getRedis Setup successfully 1`] = `
+mockRedisClusterClass {
+  "on": [MockFunction] {
+    "calls": Array [
+      Array [
+        "error",
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "type": "return",
+        "value": undefined,
+      },
+    ],
+  },
+  "ping": [MockFunction] {
+    "calls": Array [
+      Array [],
+    ],
+    "results": Array [
+      Object {
+        "type": "return",
+        "value": Promise {},
+      },
+    ],
+  },
+}
+`;
+
+exports[`getRedis Throw error if ping failed 1`] = `[Error: [REDIS] Health check failed: Some Error]`;

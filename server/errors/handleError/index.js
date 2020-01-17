@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 const getErrorKey = err => {
 	if (err.isSwaggerAjvValidationError) {
-		return ERROR_KEYS.SchemaValidationError;
+		return ERROR_KEYS.SCHEMA_VALIDATION_ERROR;
 	}
 	if (err.ERROR_KEY && HTTP_RESPONSES[err.ERROR_KEY]) {
 		return err.ERROR_KEY;

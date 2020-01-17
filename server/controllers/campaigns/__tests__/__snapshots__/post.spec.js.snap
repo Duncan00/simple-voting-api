@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`POST /v1/campaigns When all campaign names in request body are not unique 409 - Conflict 1`] = `
+Object {
+  "data": Object {},
+  "meta": Object {
+    "code": 40901,
+    "errors": Array [],
+    "message": "Candidate names are conflict.",
+    "type": "CANDIDATE_NAMES_CONFLICT",
+  },
+}
+`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created 1`] = `
+Object {
+  "data": Object {
+    "candidates": Array [
+      Object {
+        "name": "Michael Jordan",
+        "number_of_votes": 0,
+        "voted": false,
+      },
+      Object {
+        "name": "Tim Duncan",
+        "number_of_votes": 0,
+        "voted": false,
+      },
+    ],
+    "end_date": Array [
+      "2019-01-31",
+    ],
+    "id": Array [
+      "fa044192-db7e-4fd3-9334-c9344360286b",
+    ],
+    "start_date": Array [
+      "2019-01-01",
+    ],
+    "title": Array [
+      "Who is the best NBA player in the history",
+    ],
+  },
+  "meta": Object {
+    "code": 20100,
+    "message": "Created",
+  },
+}
+`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: redis.hgetall 1`] = `
+Array [
+  Array [
+    "campaign:uuid-1",
+  ],
+]
+`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: redis.hmset 1`] = `
+Array [
+  Array [
+    "campaign:uuid-1",
+    Object {
+      "end_date": "2019-01-31",
+      "id": "uuid-1",
+      "number_of_votes:Michael Jordan": 0,
+      "number_of_votes:Tim Duncan": 0,
+      "start_date": "2019-01-01",
+      "title": "Who is the best NBA player in the history",
+    },
+  ],
+]
+`;

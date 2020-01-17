@@ -6,18 +6,22 @@ const ERROR_KEYS = {
 	SCHEMA_VALIDATION_ERROR: Symbol('SCHEMA_VALIDATION_ERROR'),
 	AUTH_ERROR: Symbol('AUTH_ERROR'),
 	NOT_FOUND: Symbol('NOT_FOUND'),
-	UNPROCESSABLE_ENTITY: Symbol('UNPROCESSABLE_ENTITY')
+	UNPROCESSABLE_ENTITY: Symbol('UNPROCESSABLE_ENTITY'),
+	CANDIDATE_NAMES_CONFLICT: Symbol('CANDIDATE_NAMES_CONFLICT')
 };
 
-/**
- *  Let meta_code be globally (app-wise) unique please!
- */
 const HTTP_RESPONSES = {
 	[ERROR_KEYS.CONFLICT]: {
 		status: 409,
 		meta_code: 40900,
 		type: 'Conflict',
 		message: 'Conflict.'
+	},
+	[ERROR_KEYS.CANDIDATE_NAMES_CONFLICT]: {
+		status: 409,
+		meta_code: 40901,
+		type: 'CANDIDATE_NAMES_CONFLICT',
+		message: 'Candidate names are conflict.'
 	},
 	[ERROR_KEYS.INTERNAL]: {
 		status: 500,
@@ -80,7 +84,6 @@ class CustomError extends Error {
 	}
 }
 
-// alias to make it similar to old interfaces
 const makeError = (...args) => CustomError.create(...args);
 
 module.exports = {

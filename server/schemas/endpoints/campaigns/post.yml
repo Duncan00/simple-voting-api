@@ -14,6 +14,7 @@ paths:
                   type: string
                   example:  Who is the best NBA player in the history
                   minLength: 1
+                  maxLength: 1024
                 start_date:
                   type: string
                   format: date
