@@ -14,6 +14,10 @@ paths:
                   $ref: "#/components/schemas/Hkid"
                 candidate:
                   $ref: "#/components/schemas/RequestCandidateResource"
+              additionalProperties: false
+              required:
+                - hkid
+                - candidate
       responses:
         '201':
           content:
@@ -24,7 +28,7 @@ paths:
                   meta:
                     $ref: '#/components/schemas/Meta20100'
                   data:
-                    $ref: "#/components/schemas/VoteResource"
+                    $ref: "#/components/schemas/CampaignResource"
                 additionalProperties: false
                 required:
                   - meta

@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`handleError handleKnownError ERROR_KEY = Symbol(ALREADY_VOTED): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40902,
+      "errors": Array [],
+      "message": "This HKID has already voted this campaign.",
+      "type": "ALREADY_VOTED",
+    },
+  },
+  "status": 409,
+}
+`;
+
 exports[`handleError handleKnownError ERROR_KEY = Symbol(AUTH_ERROR): > http response of the error 1`] = `
 Object {
   "body": Object {
@@ -12,6 +27,36 @@ Object {
     },
   },
   "status": 401,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(CAMPAIGN_INACTIVE): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42202,
+      "errors": Array [],
+      "message": "Campaign is not in active date.",
+      "type": "CAMPAIGN_INACTIVE",
+    },
+  },
+  "status": 422,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(CAMPAIGN_NOT_FOUND): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40401,
+      "errors": Array [],
+      "message": "Campaign is not found.",
+      "type": "NotFound",
+    },
+  },
+  "status": 404,
 }
 `;
 
@@ -30,6 +75,21 @@ Object {
 }
 `;
 
+exports[`handleError handleKnownError ERROR_KEY = Symbol(CANDIDATE_NOT_FOUND): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40402,
+      "errors": Array [],
+      "message": "Candidate is not found.",
+      "type": "NotFound",
+    },
+  },
+  "status": 404,
+}
+`;
+
 exports[`handleError handleKnownError ERROR_KEY = Symbol(CONFLICT): > http response of the error 1`] = `
 Object {
   "body": Object {
@@ -42,6 +102,21 @@ Object {
     },
   },
   "status": 409,
+}
+`;
+
+exports[`handleError handleKnownError ERROR_KEY = Symbol(HKID_INVALID): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42203,
+      "errors": Array [],
+      "message": "HKID is invalid.",
+      "type": "HKID_INVALID",
+    },
+  },
+  "status": 422,
 }
 `;
 
@@ -90,6 +165,26 @@ Object {
 }
 `;
 
+exports[`handleError handleKnownError render error details for Symbol(ALREADY_VOTED): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40902,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "This HKID has already voted this campaign.",
+      "type": "ALREADY_VOTED",
+    },
+  },
+  "status": 409,
+}
+`;
+
 exports[`handleError handleKnownError render error details for Symbol(AUTH_ERROR): > http response of the error 1`] = `
 Object {
   "body": Object {
@@ -107,6 +202,46 @@ Object {
     },
   },
   "status": 401,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(CAMPAIGN_INACTIVE): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42202,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Campaign is not in active date.",
+      "type": "CAMPAIGN_INACTIVE",
+    },
+  },
+  "status": 422,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(CAMPAIGN_NOT_FOUND): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40401,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Campaign is not found.",
+      "type": "NotFound",
+    },
+  },
+  "status": 404,
 }
 `;
 
@@ -130,6 +265,26 @@ Object {
 }
 `;
 
+exports[`handleError handleKnownError render error details for Symbol(CANDIDATE_NOT_FOUND): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 40402,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "Candidate is not found.",
+      "type": "NotFound",
+    },
+  },
+  "status": 404,
+}
+`;
+
 exports[`handleError handleKnownError render error details for Symbol(CONFLICT): > http response of the error 1`] = `
 Object {
   "body": Object {
@@ -147,6 +302,26 @@ Object {
     },
   },
   "status": 409,
+}
+`;
+
+exports[`handleError handleKnownError render error details for Symbol(HKID_INVALID): > http response of the error 1`] = `
+Object {
+  "body": Object {
+    "data": Object {},
+    "meta": Object {
+      "code": 42203,
+      "errors": Array [
+        Object {
+          "info": "Additional error message is shown.",
+          "path": null,
+        },
+      ],
+      "message": "HKID is invalid.",
+      "type": "HKID_INVALID",
+    },
+  },
+  "status": 422,
 }
 `;
 
@@ -231,6 +406,11 @@ Array [
   40400,
   42200,
   40901,
+  40902,
+  40401,
+  40402,
+  42202,
+  42203,
 ]
 `;
 

@@ -7,7 +7,12 @@ const ERROR_KEYS = {
 	AUTH_ERROR: Symbol('AUTH_ERROR'),
 	NOT_FOUND: Symbol('NOT_FOUND'),
 	UNPROCESSABLE_ENTITY: Symbol('UNPROCESSABLE_ENTITY'),
-	CANDIDATE_NAMES_CONFLICT: Symbol('CANDIDATE_NAMES_CONFLICT')
+	CANDIDATE_NAMES_CONFLICT: Symbol('CANDIDATE_NAMES_CONFLICT'),
+	ALREADY_VOTED: Symbol('ALREADY_VOTED'),
+	CAMPAIGN_NOT_FOUND: Symbol('CAMPAIGN_NOT_FOUND'),
+	CANDIDATE_NOT_FOUND: Symbol('CANDIDATE_NOT_FOUND'),
+	CAMPAIGN_INACTIVE: Symbol('CAMPAIGN_INACTIVE'),
+	HKID_INVALID: Symbol('HKID_INVALID')
 };
 
 const HTTP_RESPONSES = {
@@ -23,17 +28,17 @@ const HTTP_RESPONSES = {
 		type: 'CANDIDATE_NAMES_CONFLICT',
 		message: 'Candidate names are conflict.'
 	},
+	[ERROR_KEYS.ALREADY_VOTED]: {
+		status: 409,
+		meta_code: 40902,
+		type: 'ALREADY_VOTED',
+		message: 'This HKID has already voted this campaign.'
+	},
 	[ERROR_KEYS.INTERNAL]: {
 		status: 500,
 		meta_code: 50000,
 		type: 'InternalError',
 		message: 'Internal Error.'
-	},
-	[ERROR_KEYS.SCHEMA_VALIDATION_ERROR]: {
-		status: 422,
-		type: 'SchemaValidationError',
-		meta_code: 42201,
-		message: 'Schema Validation Error'
 	},
 	[ERROR_KEYS.AUTH_ERROR]: {
 		status: 401,
@@ -47,11 +52,41 @@ const HTTP_RESPONSES = {
 		type: 'NotFound',
 		message: 'Resource is not found.'
 	},
+	[ERROR_KEYS.CAMPAIGN_NOT_FOUND]: {
+		status: 404,
+		meta_code: 40401,
+		type: 'NotFound',
+		message: 'Campaign is not found.'
+	},
+	[ERROR_KEYS.CANDIDATE_NOT_FOUND]: {
+		status: 404,
+		meta_code: 40402,
+		type: 'NotFound',
+		message: 'Candidate is not found.'
+	},
 	[ERROR_KEYS.UNPROCESSABLE_ENTITY]: {
 		status: 422,
 		meta_code: 42200,
 		type: 'UnprocessableEntity',
 		message: 'Unprocessable Entity.'
+	},
+	[ERROR_KEYS.SCHEMA_VALIDATION_ERROR]: {
+		status: 422,
+		type: 'SchemaValidationError',
+		meta_code: 42201,
+		message: 'Schema Validation Error'
+	},
+	[ERROR_KEYS.CAMPAIGN_INACTIVE]: {
+		status: 422,
+		type: 'CAMPAIGN_INACTIVE',
+		meta_code: 42202,
+		message: 'Campaign is not in active date.'
+	},
+	[ERROR_KEYS.HKID_INVALID]: {
+		status: 422,
+		type: 'HKID_INVALID',
+		meta_code: 42203,
+		message: 'HKID is invalid.'
 	}
 };
 

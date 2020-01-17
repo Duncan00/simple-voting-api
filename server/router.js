@@ -19,7 +19,7 @@ module.exports = function router({redis}) {
 		.get('/v1/campaigns', common.whoami)
 
 		// Votes
-		.post('/v1/campaigns/:id/votes', common.whoami);
+		.post('/v1/campaigns/:id/votes', campaign_controller.votes.post);
 
 	return {
 		insecure

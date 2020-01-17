@@ -5,7 +5,7 @@ const _ = require('lodash');
 const {ERROR_KEYS, makeError} = require('../../errors');
 const buildCampaignRecord = require('./buildCampaignRecord');
 const buildCampaignResource = require('./buildCampaignResource');
-const {CAMPAIGN} = require('../../enums/redisPrefix');
+const {CAMPAIGN_PREFIX} = require('../../enums/redisPrefix');
 
 function post({redis}) {
 	return async function create(ctx) {
@@ -22,10 +22,10 @@ function post({redis}) {
 			end_date,
 			candidates
 		});
-		await redis.hmset(`${CAMPAIGN}:${id}`, campaign_to_store);
+		await redis.hmset(`${CAMPAIGN_PREFIX}:{${id}}`, campaign_to_store);
 
 		// Query created result & response
-		const db_campaign = await redis.hgetall(`${CAMPAIGN}:${id}`);
+		const db_campaign = await redis.hgetall(`${CAMPAIGN_PREFIX}:{${id}}`);
 		ctx.status = 201;
 		ctx.body = buildCampaignResource(db_campaign);
 	};

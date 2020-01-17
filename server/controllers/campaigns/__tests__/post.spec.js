@@ -19,10 +19,7 @@ describe('POST /v1/campaigns', () => {
 
 	beforeEach(async () => {
 		jest.resetModules();
-		const {redis} = getServerDependencyMocks();
-		redis.hmset.mockResolvedValueOnce(undefined);
-		redis.hgetall.mockResolvedValueOnce(campaign_record);
-
+		getServerDependencyMocks();
 		server = await initServer();
 	});
 
@@ -53,8 +50,10 @@ describe('POST /v1/campaigns', () => {
 			expect(body).toMatchSnapshot();
 			expect(status).toEqual(201);
 			const {redis} = getServerDependencyMocks();
-			expect(redis.hmset.mock.calls).toMatchSnapshot('redis.hmset');
-			expect(redis.hgetall.mock.calls).toMatchSnapshot('redis.hgetall');
+			const inserted_campaign = await redis.hgetall(
+				`campaign:{${campaign_record.id}}`
+			);
+			expect(inserted_campaign).toMatchSnapshot('inserted_campaign');
 		});
 	});
 

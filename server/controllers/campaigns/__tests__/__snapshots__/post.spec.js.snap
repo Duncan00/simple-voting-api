@@ -31,7 +31,7 @@ Object {
       "2019-01-31",
     ],
     "id": Array [
-      "fa044192-db7e-4fd3-9334-c9344360286b",
+      "uuid-1",
     ],
     "start_date": Array [
       "2019-01-01",
@@ -47,26 +47,4 @@ Object {
 }
 `;
 
-exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: redis.hgetall 1`] = `
-Array [
-  Array [
-    "campaign:uuid-1",
-  ],
-]
-`;
-
-exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: redis.hmset 1`] = `
-Array [
-  Array [
-    "campaign:uuid-1",
-    Object {
-      "end_date": "2019-01-31",
-      "id": "uuid-1",
-      "number_of_votes:Michael Jordan": 0,
-      "number_of_votes:Tim Duncan": 0,
-      "start_date": "2019-01-01",
-      "title": "Who is the best NBA player in the history",
-    },
-  ],
-]
-`;
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: inserted_campaign 1`] = `Object {}`;

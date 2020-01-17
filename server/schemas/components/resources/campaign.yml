@@ -25,6 +25,7 @@ components:
           items:
             $ref: "#/components/schemas/CandidateResource"
       required:
+        - id
         - title
         - start_date
         - end_date
