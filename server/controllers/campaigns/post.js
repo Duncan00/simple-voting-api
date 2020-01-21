@@ -6,7 +6,11 @@ const _ = require('lodash');
 const {ERROR_KEYS, makeError} = require('../../errors');
 const buildCampaignRecord = require('./buildCampaignRecord');
 const buildCampaignResource = require('./buildCampaignResource');
-const {CAMPAIGN_PREFIX, VOTED_PREFIX} = require('../../enums/redisPrefix');
+const {
+	CAMPAIGN_PREFIX,
+	VOTED_PREFIX,
+	CAMPAIGN_END_DATE
+} = require('../../enums/redisKeys');
 
 function post({redis}) {
 	return async function create(ctx) {
@@ -24,7 +28,8 @@ function post({redis}) {
 			candidates
 		});
 
-		const hkid_set_expired_at_ts = moment(end_date)
+		const end_date_moment = moment(end_date).endOf('day');
+		const hkid_set_expired_at_ts = end_date_moment
 			.add(1, 'days')
 			.format('X');
 
@@ -48,6 +53,10 @@ function post({redis}) {
 					),
 			multi_pipeline
 		).exec();
+
+		// This cannot be executed in same transaction as above as redis cluster is used and slot key
+		// This indexing can be done in background in a cronjob
+		await redis.zadd(CAMPAIGN_END_DATE, end_date_moment.format('X'), id);
 
 		// Query created result & response
 		const db_campaign = await redis.hgetall(`${CAMPAIGN_PREFIX}:{${id}}`);

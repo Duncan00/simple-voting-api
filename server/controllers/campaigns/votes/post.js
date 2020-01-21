@@ -10,7 +10,7 @@ const {
 	CAMPAIGN_PREFIX,
 	NUMBER_OF_VOTES_PREFIX,
 	VOTED_PREFIX
-} = require('../../../enums/redisPrefix');
+} = require('../../../enums/redisKeys');
 
 function post({redis}) {
 	return async function create(ctx) {

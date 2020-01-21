@@ -49,8 +49,8 @@ Object {
 
 exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_candidate_set_ttls 1`] = `
 Array [
-  2649600,
-  2649600,
+  2735999,
+  2735999,
 ]
 `;
 
@@ -71,7 +71,7 @@ Array [
 ]
 `;
 
-exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_set_ttl 1`] = `2649600`;
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_set_ttl 1`] = `2735999`;
 
 exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: inserted_campaign 1`] = `
 Object {

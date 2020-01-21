@@ -16,7 +16,7 @@ module.exports = function router({redis}) {
 
 		// Campaigns
 		.post('/v1/campaigns', campaign_controller.post)
-		.get('/v1/campaigns', common.whoami)
+		.get('/v1/campaigns', campaign_controller.get)
 
 		// Votes
 		.post('/v1/campaigns/:id/votes', campaign_controller.votes.post);
