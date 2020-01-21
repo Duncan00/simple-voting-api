@@ -1,15 +1,26 @@
 'use strict';
 
+const _ = require('lodash');
 const moment = require('moment');
 const buildCampaignResource = require('./buildCampaignResource');
+const isValidHkid = require('./isValidHkid');
+const hashHkid = require('./hashHkid');
+const {ERROR_KEYS, makeError} = require('../../errors');
 const {
 	CAMPAIGN_PREFIX,
 	NUMBER_OF_VOTES_PREFIX,
+	VOTED_PREFIX,
 	CAMPAIGN_END_DATE
 } = require('../../enums/redisKeys');
 
 function get({redis}) {
 	return async function read(ctx) {
+		const {hkid} = ctx.request.query;
+		// Validate HKID
+		if (hkid && !isValidHkid(hkid)) {
+			throw makeError(ERROR_KEYS.HKID_INVALID);
+		}
+
 		// Query campaign IDs not yet ended
 		const end_of_today_ts = moment()
 			.endOf('day')
@@ -53,12 +64,55 @@ function get({redis}) {
 					getTotalNumberOfVotes(campaign_a)
 			);
 
-		ctx.status = 200;
-		ctx.body = {
-			campaigns: sorted_active_campaigns
-				.concat(sorted_ended_db_campaigns)
-				.map(buildCampaignResource)
-		};
+		const sorted_campaigns = sorted_active_campaigns.concat(
+			sorted_ended_db_campaigns
+		);
+		if (hkid) {
+			// Find back votes of this HKID in each campaign
+			const hashed_hkid = hashHkid(hkid);
+			const campaigns = await Promise.all(
+				sorted_campaigns.map(async db_campaign => {
+					const voted = await redis.sismember(
+						`${VOTED_PREFIX}:{${db_campaign.id}}`,
+						hashed_hkid
+					);
+					if (voted) {
+						// Find out this HKID hash voted which candidate
+						const names = getCandidateNames(db_campaign);
+						const voted_candidates = await Promise.all(
+							names.map(async name => {
+								const candidate_voted = await redis.sismember(
+									`${VOTED_PREFIX}:{${db_campaign.id}}:${name}`,
+									hashed_hkid
+								);
+								return {
+									[name]: Boolean(candidate_voted)
+								};
+							})
+						);
+						const voted_candidate_map = _.merge(
+							{},
+							...voted_candidates
+						);
+						return buildCampaignResource(
+							db_campaign,
+							voted_candidate_map
+						);
+					} else {
+						return buildCampaignResource(db_campaign);
+					}
+				})
+			);
+			ctx.status = 200;
+			ctx.body = {
+				campaigns
+			};
+		} else {
+			ctx.status = 200;
+			ctx.body = {
+				campaigns: sorted_campaigns.map(buildCampaignResource)
+			};
+		}
 	};
 }
 
@@ -76,6 +130,14 @@ function getTotalNumberOfVotes(campaign) {
 			? result + Number(campaign[key])
 			: result;
 	}, 0);
+}
+
+function getCandidateNames(db_campaign) {
+	return Object.keys(db_campaign)
+		.filter(key => key.startsWith(NUMBER_OF_VOTES_PREFIX))
+		.map(voted_field =>
+			voted_field.replace(`${NUMBER_OF_VOTES_PREFIX}:`, '')
+		);
 }
 
 module.exports = get;

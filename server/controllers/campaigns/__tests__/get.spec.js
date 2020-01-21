@@ -7,6 +7,7 @@ const mockdate = require('mockdate');
 const initServer = () => require('../../../initServer')();
 const getServerDependencyMocks = () =>
 	require('../../../__mocks__/getServerDependencyMocks');
+const hashHkid = require('../hashHkid');
 
 describe('GET /v1/campaigns', () => {
 	let server;
@@ -67,6 +68,9 @@ describe('GET /v1/campaigns', () => {
 		}
 	];
 
+	const hkid = 'A123456(3)';
+	const hashed_hkid = hashHkid(hkid);
+
 	beforeEach(async () => {
 		jest.resetModules();
 		mockdate.set('2019-01-01');
@@ -88,6 +92,15 @@ describe('GET /v1/campaigns', () => {
 				]);
 			})
 		);
+		// Voted "Michael Jordan" at "Current campaign 2"
+		await redis.sadd(
+			`voted:{2a044192-db7e-4fd3-9334-c9344360286b}`,
+			hashed_hkid
+		);
+		await redis.sadd(
+			`voted:{2a044192-db7e-4fd3-9334-c9344360286b}:Michael Jordan`,
+			hashed_hkid
+		);
 
 		server = await initServer();
 	});
@@ -98,9 +111,20 @@ describe('GET /v1/campaigns', () => {
 	});
 
 	// TODO: Different combination of test cases should be added
-	describe('When query', () => {
+	describe('When query without query strings', () => {
 		test('200 - Responds a list of all campaigns started', async () => {
 			const {body, status} = await supertest(server).get(`/v1/campaigns`);
+
+			expect(body).toMatchSnapshot();
+			expect(status).toEqual(200);
+		});
+	});
+
+	describe('When query with hkid', () => {
+		test('200 - Responds a list of all campaigns started', async () => {
+			const {body, status} = await supertest(server).get(
+				`/v1/campaigns?hkid=${hkid}`
+			);
 
 			expect(body).toMatchSnapshot();
 			expect(status).toEqual(200);

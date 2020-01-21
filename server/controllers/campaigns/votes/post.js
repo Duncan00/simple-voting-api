@@ -1,9 +1,9 @@
 'use strict';
 
 const _ = require('lodash');
-const crypto = require('crypto');
 const {ERROR_KEYS, makeError} = require('../../../errors');
-const isValidHkid = require('./isValidHkid');
+const isValidHkid = require('../isValidHkid');
+const hashHkid = require('../hashHkid');
 const isActiveCampaign = require('./isActiveCampaign');
 const buildCampaignResource = require('../buildCampaignResource');
 const {
@@ -42,19 +42,16 @@ function post({redis}) {
 		}
 
 		// Try to store hashed_hkid to redis SET data structure
-		const hashed_hkid = crypto
-			.createHash('sha256')
-			.update(hkid)
-			.digest('hex');
+		const hashed_hkid = hashHkid(hkid);
 
 		// TODO: To prevent concurrent duplicated voting, create a lock
 
 		// Check already voted
-		const is_member_int = await redis.sismember(
+		const is_member = await redis.sismember(
 			`${VOTED_PREFIX}:{${campaign_id}}`,
 			hashed_hkid
 		);
-		if (is_member_int === 1) {
+		if (is_member) {
 			throw makeError(ERROR_KEYS.ALREADY_VOTED);
 		}
 
@@ -81,7 +78,9 @@ function post({redis}) {
 			`${CAMPAIGN_PREFIX}:{${campaign_id}}`
 		);
 		ctx.status = 201;
-		ctx.body = buildCampaignResource(updated_campaign_record);
+		ctx.body = buildCampaignResource(updated_campaign_record, {
+			[name]: true
+		});
 	};
 }
 

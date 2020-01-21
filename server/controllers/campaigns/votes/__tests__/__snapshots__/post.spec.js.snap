@@ -67,7 +67,7 @@ Object {
       Object {
         "name": "Michael Jordan",
         "number_of_votes": 1,
-        "voted": false,
+        "voted": true,
       },
       Object {
         "name": "Tim Duncan",
