@@ -54,9 +54,11 @@ function get({redis}) {
 			);
 
 		ctx.status = 200;
-		ctx.body = sorted_active_campaigns
-			.concat(sorted_ended_db_campaigns)
-			.map(buildCampaignResource);
+		ctx.body = {
+			campaigns: sorted_active_campaigns
+				.concat(sorted_ended_db_campaigns)
+				.map(buildCampaignResource)
+		};
 	};
 }
 
@@ -71,7 +73,7 @@ async function getCampaignsByIds({redis}, ids) {
 function getTotalNumberOfVotes(campaign) {
 	return Object.keys(campaign).reduce((result, key) => {
 		return key.startsWith(NUMBER_OF_VOTES_PREFIX)
-			? result + campaign[key]
+			? result + Number(campaign[key])
 			: result;
 	}, 0);
 }

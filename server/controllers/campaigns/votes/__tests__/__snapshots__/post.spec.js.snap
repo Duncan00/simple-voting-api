@@ -75,18 +75,10 @@ Object {
         "voted": false,
       },
     ],
-    "end_date": Array [
-      "2019-01-31",
-    ],
-    "id": Array [
-      "fa044192-db7e-4fd3-9334-c9344360286b",
-    ],
-    "start_date": Array [
-      "2019-01-01",
-    ],
-    "title": Array [
-      "Who is the best NBA player in the history",
-    ],
+    "end_date": "2019-01-31",
+    "id": "fa044192-db7e-4fd3-9334-c9344360286b",
+    "start_date": "2019-01-01",
+    "title": "Who is the best NBA player in the history",
   },
   "meta": Object {
     "code": 20100,

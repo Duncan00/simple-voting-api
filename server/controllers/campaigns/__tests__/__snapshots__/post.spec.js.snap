@@ -27,18 +27,10 @@ Object {
         "voted": false,
       },
     ],
-    "end_date": Array [
-      "2019-01-31",
-    ],
-    "id": Array [
-      "uuid-1",
-    ],
-    "start_date": Array [
-      "2019-01-01",
-    ],
-    "title": Array [
-      "Who is the best NBA player in the history",
-    ],
+    "end_date": "2019-01-31",
+    "id": "uuid-1",
+    "start_date": "2019-01-01",
+    "title": "Who is the best NBA player in the history",
   },
   "meta": Object {
     "code": 20100,
