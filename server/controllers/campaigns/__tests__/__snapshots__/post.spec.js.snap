@@ -47,4 +47,39 @@ Object {
 }
 `;
 
-exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: inserted_campaign 1`] = `Object {}`;
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_candidate_set_ttls 1`] = `
+Array [
+  2649600,
+  2649600,
+]
+`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_candidate_sets 1`] = `
+Array [
+  Array [
+    "0",
+  ],
+  Array [
+    "0",
+  ],
+]
+`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_set 1`] = `
+Array [
+  "0",
+]
+`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: hkid_set_ttl 1`] = `2649600`;
+
+exports[`POST /v1/campaigns When all campaign names in request body are unique 201 - Successfully created: inserted_campaign 1`] = `
+Object {
+  "end_date": "2019-01-31",
+  "id": "uuid-1",
+  "number_of_votes:Michael Jordan": "0",
+  "number_of_votes:Tim Duncan": "0",
+  "start_date": "2019-01-01",
+  "title": "Who is the best NBA player in the history",
+}
+`;

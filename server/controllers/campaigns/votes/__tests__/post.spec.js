@@ -20,6 +20,7 @@ describe('POST /v1/campaigns/:id/votes', () => {
 
 	beforeEach(async () => {
 		jest.resetModules();
+		mockdate.set('2019-01-01');
 		const {redis} = getServerDependencyMocks();
 		await redis.hmset(`campaign:{${campaign_record.id}}`, campaign_record);
 		server = await initServer();
@@ -27,6 +28,7 @@ describe('POST /v1/campaigns/:id/votes', () => {
 
 	afterEach(() => {
 		server.close();
+		mockdate.reset();
 	});
 
 	describe('When vote with valid input and valid date', () => {
@@ -38,8 +40,6 @@ describe('POST /v1/campaigns/:id/votes', () => {
 		};
 
 		test('201 - Successfully created', async () => {
-			mockdate.set('2019-01-01');
-
 			const {body, status} = await supertest(server)
 				.post(`/v1/campaigns/${campaign_record.id}/votes`)
 				.send(request_body);
@@ -64,8 +64,6 @@ describe('POST /v1/campaigns/:id/votes', () => {
 			expect(voted_candidate_hkid_set).toMatchSnapshot(
 				'voted_candidate_hkid_set'
 			);
-
-			mockdate.reset();
 		});
 	});
 
@@ -172,8 +170,6 @@ describe('POST /v1/campaigns/:id/votes', () => {
 
 			expect(body).toMatchSnapshot();
 			expect(status).toEqual(422);
-
-			mockdate.reset();
 		});
 	});
 });
