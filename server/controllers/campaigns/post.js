@@ -28,7 +28,7 @@ function post({redis}) {
 			candidates
 		});
 
-		const end_date_moment = moment(end_date).endOf('day');
+		const end_date_moment = moment.utc(end_date).endOf('day');
 		const hkid_set_expired_at_ts = end_date_moment
 			.add(1, 'days')
 			.format('X');

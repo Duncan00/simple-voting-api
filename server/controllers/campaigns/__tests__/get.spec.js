@@ -84,7 +84,8 @@ describe('GET /v1/campaigns', () => {
 					),
 					redis.zadd(
 						'campaign_end_date',
-						moment(campaign_record.end_date)
+						moment
+							.utc(campaign_record.end_date)
 							.endOf('day')
 							.format('X'),
 						campaign_record.id

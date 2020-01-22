@@ -22,7 +22,8 @@ function get({redis}) {
 		}
 
 		// Query campaign IDs not yet ended
-		const end_of_today_ts = moment()
+		const end_of_today_ts = moment
+			.utc()
 			.endOf('day')
 			.format('X');
 		const non_ended_ids = await redis.zrangebyscore(
@@ -32,7 +33,8 @@ function get({redis}) {
 		);
 
 		// Query campaign IDs ended
-		const end_of_yesterday_ts = moment()
+		const end_of_yesterday_ts = moment
+			.utc()
 			.subtract(1, 'days')
 			.endOf('day')
 			.format('X');
@@ -55,7 +57,7 @@ function get({redis}) {
 		const sorted_active_campaigns = non_ended_db_campaigns
 			// Filter out not yet start campaigns
 			.filter(campaign =>
-				moment().isSameOrAfter(campaign.start_date, 'days')
+				moment.utc().isSameOrAfter(campaign.start_date, 'days')
 			)
 			// Sort by voted count for active campaigns
 			.sort(
