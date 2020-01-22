@@ -7,7 +7,6 @@ Object {
     "code": 40902,
     "errors": Array [],
     "message": "This HKID has already voted this campaign.",
-    "type": "ALREADY_VOTED",
   },
 }
 `;
@@ -19,7 +18,6 @@ Object {
     "code": 42203,
     "errors": Array [],
     "message": "HKID is invalid.",
-    "type": "HKID_INVALID",
   },
 }
 `;
@@ -31,7 +29,6 @@ Object {
     "code": 42203,
     "errors": Array [],
     "message": "HKID is invalid.",
-    "type": "HKID_INVALID",
   },
 }
 `;
@@ -43,7 +40,6 @@ Object {
     "code": 40401,
     "errors": Array [],
     "message": "Campaign is not found.",
-    "type": "NotFound",
   },
 }
 `;
@@ -55,7 +51,6 @@ Object {
     "code": 40402,
     "errors": Array [],
     "message": "Candidate is not found.",
-    "type": "NotFound",
   },
 }
 `;
@@ -85,6 +80,29 @@ Object {
     "message": "Created",
   },
 }
+`;
+
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date 201 - Successfully created: updated_campaign 1`] = `
+Object {
+  "end_date": "2019-01-31",
+  "id": "fa044192-db7e-4fd3-9334-c9344360286b",
+  "number_of_votes:Michael Jordan": "1",
+  "number_of_votes:Tim Duncan": "0",
+  "start_date": "2019-01-01",
+  "title": "Who is the best NBA player in the history",
+}
+`;
+
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date 201 - Successfully created: voted_campaign_hkid_set 1`] = `
+Array [
+  "ff4147ac6a03a3bcf124f9f49bc12e2bf3c0b2abe029a4dfaab7c39ae1f98309",
+]
+`;
+
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date 201 - Successfully created: voted_candidate_hkid_set 1`] = `
+Array [
+  "ff4147ac6a03a3bcf124f9f49bc12e2bf3c0b2abe029a4dfaab7c39ae1f98309",
+]
 `;
 
 exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date concurrently 201 - Successfully created for only 1 of the request: responses 1`] = `
@@ -123,7 +141,6 @@ Array [
         "code": 42301,
         "errors": Array [],
         "message": "Another vote with the same HKID for this campaign is in progress. Please try again later.",
-        "type": "VOTE_LOCKED",
       },
     },
     "status": 423,

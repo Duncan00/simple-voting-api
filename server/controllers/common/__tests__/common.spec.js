@@ -1,12 +1,15 @@
 'use strict';
 
-const initServer = () => require('../../../initServer')();
 const supertest = require('supertest');
+const getServerDependencyMocks = () =>
+	require('../../../__mocks__/getServerDependencyMocks');
+const initServer = () => require('../../../initServer')();
 
 describe('Common controller', () => {
 	let server;
 	beforeEach(async () => {
 		jest.resetModules();
+		getServerDependencyMocks();
 		server = await initServer();
 	});
 	afterEach(() => {

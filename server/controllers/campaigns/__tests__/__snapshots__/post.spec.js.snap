@@ -7,7 +7,6 @@ Object {
     "code": 40901,
     "errors": Array [],
     "message": "Candidate names are conflict.",
-    "type": "CANDIDATE_NAMES_CONFLICT",
   },
 }
 `;
