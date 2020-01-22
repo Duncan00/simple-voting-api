@@ -20,78 +20,65 @@ const HTTP_RESPONSES = {
 	[ERROR_KEYS.CONFLICT]: {
 		status: 409,
 		meta_code: 40900,
-		type: 'Conflict',
 		message: 'Conflict.'
 	},
 	[ERROR_KEYS.CANDIDATE_NAMES_CONFLICT]: {
 		status: 409,
 		meta_code: 40901,
-		type: 'CANDIDATE_NAMES_CONFLICT',
 		message: 'Candidate names are conflict.'
 	},
 	[ERROR_KEYS.ALREADY_VOTED]: {
 		status: 409,
 		meta_code: 40902,
-		type: 'ALREADY_VOTED',
 		message: 'This HKID has already voted this campaign.'
 	},
 	[ERROR_KEYS.INTERNAL]: {
 		status: 500,
 		meta_code: 50000,
-		type: 'InternalError',
 		message: 'Internal Error.'
 	},
 	[ERROR_KEYS.AUTH_ERROR]: {
 		status: 401,
 		meta_code: 40100,
-		type: 'AuthenticationError',
 		message: 'Authentication Error.'
 	},
 	[ERROR_KEYS.NOT_FOUND]: {
 		status: 404,
 		meta_code: 40400,
-		type: 'NotFound',
 		message: 'Resource is not found.'
 	},
 	[ERROR_KEYS.CAMPAIGN_NOT_FOUND]: {
 		status: 404,
 		meta_code: 40401,
-		type: 'NotFound',
 		message: 'Campaign is not found.'
 	},
 	[ERROR_KEYS.CANDIDATE_NOT_FOUND]: {
 		status: 404,
 		meta_code: 40402,
-		type: 'NotFound',
 		message: 'Candidate is not found.'
 	},
 	[ERROR_KEYS.UNPROCESSABLE_ENTITY]: {
 		status: 422,
 		meta_code: 42200,
-		type: 'UnprocessableEntity',
 		message: 'Unprocessable Entity.'
 	},
 	[ERROR_KEYS.SCHEMA_VALIDATION_ERROR]: {
 		status: 422,
-		type: 'SchemaValidationError',
 		meta_code: 42201,
 		message: 'Schema Validation Error'
 	},
 	[ERROR_KEYS.CAMPAIGN_INACTIVE]: {
 		status: 422,
-		type: 'CAMPAIGN_INACTIVE',
 		meta_code: 42202,
 		message: 'Campaign is not in active date.'
 	},
 	[ERROR_KEYS.HKID_INVALID]: {
 		status: 422,
-		type: 'HKID_INVALID',
 		meta_code: 42203,
 		message: 'HKID is invalid.'
 	},
 	[ERROR_KEYS.VOTE_LOCKED]: {
 		status: 423,
-		type: 'VOTE_LOCKED',
 		meta_code: 42301,
 		message:
 			'Another vote with the same HKID for this campaign is in progress. Please try again later.'

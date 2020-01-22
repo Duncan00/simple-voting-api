@@ -15,11 +15,10 @@ const getErrorKey = err => {
 	return ERROR_KEYS.INTERNAL;
 };
 
-function getErrorResponseMeta({code, type, message, details = []}) {
-	throwIfFalsy({code, message, type});
+function getErrorResponseMeta({code, message, details = []}) {
+	throwIfFalsy({code, message});
 	return {
 		code,
-		type,
 		message,
 		errors: details.map(({info, path}) => ({info, path}))
 	};
@@ -55,15 +54,12 @@ module.exports = () =>
 				ctx
 			);
 
-			const {status, meta_code, type, message} = HTTP_RESPONSES[
-				error_key
-			];
+			const {status, meta_code, message} = HTTP_RESPONSES[error_key];
 			ctx.status = status;
 			ctx.body = {
 				meta: getErrorResponseMeta({
 					status,
 					code: meta_code,
-					type,
 					message,
 					details
 				}),
