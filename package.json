@@ -7,8 +7,9 @@
     "setup": "bash scripts/development/setup.sh && node scripts/development/validateSetup.js",
     "start": "yarn setup && nodemon --exec 'node -r dotenv/config' server/server -- dotenv_config_path=dev.env",
     "debug": "NODE_ENV=development node -r dotenv/config dotenv_config_path=dev.env --inspect-brk server/server",
-    "test:server": "NODE_ENV=test jest",
     "test": "yarn lint && yarn test:server",
+    "test:server": "NODE_ENV=test TZ=utc jest",
+    "test:low-resource-mode": "yarn lint && NODE_ENV=test TZ=utc jest --runInBand",
     "lint": "eslint --ext .js .",
     "prettify": "prettier --write \"**/*.js\""
   },
