@@ -6,9 +6,9 @@ const campaignController = require('./controllers/campaigns');
 const {validation} = require('swagger-ajv').middlewares.koa;
 const schemas = require('./schemas');
 
-module.exports = function router({redis}) {
+module.exports = function router({redis, redlock}) {
 	const insecure = new Router();
-	const campaign_controller = campaignController({redis});
+	const campaign_controller = campaignController({redis, redlock});
 
 	insecure
 		.use(validation(schemas.ajv))

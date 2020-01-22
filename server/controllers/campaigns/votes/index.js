@@ -2,8 +2,8 @@
 
 const post = require('./post');
 
-const voteController = ({redis}) => ({
-	post: post({redis})
+const voteController = ({redis, redlock}) => ({
+	post: post({redis, redlock})
 });
 
 module.exports = voteController;

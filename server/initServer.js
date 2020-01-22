@@ -16,6 +16,7 @@ async function initServer() {
 		const winston = require('winston');
 		const Koa = require('koa');
 		const getRedis = require('./services/redis/getRedis');
+		const Redlock = require('redlock');
 		const router = require('./router');
 
 		root_logger = loggerFactory({
@@ -29,9 +30,14 @@ async function initServer() {
 			logger: root_logger
 		});
 
+		const redlock = new Redlock(
+			[redis],
+			config.services.redis.redlock.options
+		);
+
 		const koa_instance = new Koa();
 		return require('./makeApp')({
-			router: router({redis}),
+			router: router({redis, redlock}),
 			logger: root_logger,
 			config,
 			app: koa_instance

@@ -87,7 +87,51 @@ Object {
 }
 `;
 
-exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date 201 - Successfully created: updated_campaign 1`] = `
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date concurrently 201 - Successfully created for only 1 of the request: responses 1`] = `
+Array [
+  Object {
+    "body": Object {
+      "data": Object {
+        "candidates": Array [
+          Object {
+            "name": "Michael Jordan",
+            "number_of_votes": 1,
+            "voted": true,
+          },
+          Object {
+            "name": "Tim Duncan",
+            "number_of_votes": 0,
+            "voted": false,
+          },
+        ],
+        "end_date": "2019-01-31",
+        "id": "fa044192-db7e-4fd3-9334-c9344360286b",
+        "start_date": "2019-01-01",
+        "title": "Who is the best NBA player in the history",
+      },
+      "meta": Object {
+        "code": 20100,
+        "message": "Created",
+      },
+    },
+    "status": 201,
+  },
+  Object {
+    "body": Object {
+      "data": Object {},
+      "meta": Object {
+        "code": 42301,
+        "errors": Array [],
+        "message": "Another vote with the same HKID for this campaign is in progress. Please try again later.",
+        "type": "VOTE_LOCKED",
+      },
+    },
+    "status": 423,
+  },
+]
+`;
+
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date concurrently 201 - Successfully created for only 1 of the request: updated_campaign 1`] = `
 Object {
   "end_date": "2019-01-31",
   "id": "fa044192-db7e-4fd3-9334-c9344360286b",
@@ -98,13 +142,13 @@ Object {
 }
 `;
 
-exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date 201 - Successfully created: voted_campaign_hkid_set 1`] = `
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date concurrently 201 - Successfully created for only 1 of the request: voted_campaign_hkid_set 1`] = `
 Array [
   "ff4147ac6a03a3bcf124f9f49bc12e2bf3c0b2abe029a4dfaab7c39ae1f98309",
 ]
 `;
 
-exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date 201 - Successfully created: voted_candidate_hkid_set 1`] = `
+exports[`POST /v1/campaigns/:id/votes When vote with valid input and valid date concurrently 201 - Successfully created for only 1 of the request: voted_candidate_hkid_set 1`] = `
 Array [
   "ff4147ac6a03a3bcf124f9f49bc12e2bf3c0b2abe029a4dfaab7c39ae1f98309",
 ]

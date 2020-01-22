@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const config = require('config');
 const {ERROR_KEYS, makeError} = require('../../../errors');
 const isValidHkid = require('../isValidHkid');
 const hashHkid = require('../hashHkid');
@@ -12,7 +13,7 @@ const {
 	VOTED_PREFIX
 } = require('../../../enums/redisKeys');
 
-function post({redis}) {
+function post({redis, redlock}) {
 	return async function create(ctx) {
 		const {id: campaign_id} = ctx.params;
 		const {hkid, candidate} = ctx.request.body;
@@ -41,36 +42,54 @@ function post({redis}) {
 			throw makeError(ERROR_KEYS.CAMPAIGN_INACTIVE);
 		}
 
-		// Try to store hashed_hkid to redis SET data structure
+		// Hash HKID to not keep HKID directly
 		const hashed_hkid = hashHkid(hkid);
 
-		// TODO: To prevent concurrent duplicated voting, create a lock
-
-		// Check already voted
-		const is_member = await redis.sismember(
-			`${VOTED_PREFIX}:{${campaign_id}}`,
-			hashed_hkid
-		);
-		if (is_member) {
-			throw makeError(ERROR_KEYS.ALREADY_VOTED);
+		// To prevent concurrent duplicated voting, lock by hkid with campaign_id
+		let lock;
+		try {
+			lock = await redlock.lock(
+				`locks:hkid:${hashed_hkid}:campaign:${campaign_id}`,
+				config.services.redis.redlock.ttl.vote
+			);
+		} catch (e) {
+			if (e.name === 'LockError') {
+				throw makeError(ERROR_KEYS.VOTE_LOCKED);
+			} else {
+				throw e;
+			}
 		}
 
-		// Everything alright, increment vote count
-		await redis
-			.multi()
-			// Mark HKID voted this campaign
-			.sadd(`${VOTED_PREFIX}:{${campaign_id}}`, hashed_hkid)
-			// Mark HKID voted specific candidate in this this campaign
-			.sadd(`${VOTED_PREFIX}:{${campaign_id}}:${name}`, hashed_hkid)
-			// Increase vote count for  specific candidate
-			.hincrby(
-				`${CAMPAIGN_PREFIX}:{${campaign_id}}`,
-				`${NUMBER_OF_VOTES_PREFIX}:${name}`,
-				1
-			)
-			.exec();
+		try {
+			// Check already voted
+			const is_member = await redis.sismember(
+				`${VOTED_PREFIX}:{${campaign_id}}`,
+				hashed_hkid
+			);
+			if (is_member) {
+				throw makeError(ERROR_KEYS.ALREADY_VOTED);
+			}
 
-		// TODO: Unlock after successfully voted
+			// Everything alright, increment vote count
+			await redis
+				.multi()
+				// Mark HKID voted this campaign
+				.sadd(`${VOTED_PREFIX}:{${campaign_id}}`, hashed_hkid)
+				// Mark HKID voted specific candidate in this this campaign
+				.sadd(`${VOTED_PREFIX}:{${campaign_id}}:${name}`, hashed_hkid)
+				// Increase vote count for  specific candidate
+				.hincrby(
+					`${CAMPAIGN_PREFIX}:{${campaign_id}}`,
+					`${NUMBER_OF_VOTES_PREFIX}:${name}`,
+					1
+				)
+				.exec();
+		} finally {
+			// Unlock after successfully voted or any errors asynchronously
+			if (lock) {
+				lock.unlock().catch(ctx.logger.error);
+			}
+		}
 
 		// Query latest campaign
 		// To fine tune performance, can use updated number of votes from redis.hincrby instead of extra query

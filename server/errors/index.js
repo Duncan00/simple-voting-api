@@ -12,7 +12,8 @@ const ERROR_KEYS = {
 	CAMPAIGN_NOT_FOUND: Symbol('CAMPAIGN_NOT_FOUND'),
 	CANDIDATE_NOT_FOUND: Symbol('CANDIDATE_NOT_FOUND'),
 	CAMPAIGN_INACTIVE: Symbol('CAMPAIGN_INACTIVE'),
-	HKID_INVALID: Symbol('HKID_INVALID')
+	HKID_INVALID: Symbol('HKID_INVALID'),
+	VOTE_LOCKED: Symbol('VOTE_LOCKED')
 };
 
 const HTTP_RESPONSES = {
@@ -87,6 +88,13 @@ const HTTP_RESPONSES = {
 		type: 'HKID_INVALID',
 		meta_code: 42203,
 		message: 'HKID is invalid.'
+	},
+	[ERROR_KEYS.VOTE_LOCKED]: {
+		status: 423,
+		type: 'VOTE_LOCKED',
+		meta_code: 42301,
+		message:
+			'Another vote with the same HKID for this campaign is in progress. Please try again later.'
 	}
 };
 

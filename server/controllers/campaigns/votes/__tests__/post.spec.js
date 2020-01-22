@@ -1,6 +1,7 @@
 'use strict';
 
 const supertest = require('supertest');
+const _ = require('lodash');
 const mockdate = require('mockdate');
 const initServer = () => require('../../../../initServer')();
 const getServerDependencyMocks = () =>
@@ -46,6 +47,49 @@ describe('POST /v1/campaigns/:id/votes', () => {
 
 			expect(body).toMatchSnapshot();
 			expect(status).toEqual(201);
+
+			const {redis} = getServerDependencyMocks();
+			const updated_campaign = await redis.hgetall(
+				`campaign:{${campaign_record.id}}`
+			);
+			const voted_campaign_hkid_set = await redis.smembers(
+				`voted:{${campaign_record.id}}`
+			);
+			const voted_candidate_hkid_set = await redis.smembers(
+				`voted:{${campaign_record.id}}:${request_body.candidate.name}`
+			);
+			expect(updated_campaign).toMatchSnapshot('updated_campaign');
+			expect(voted_campaign_hkid_set).toMatchSnapshot(
+				'voted_campaign_hkid_set'
+			);
+			expect(voted_candidate_hkid_set).toMatchSnapshot(
+				'voted_candidate_hkid_set'
+			);
+		});
+	});
+
+	describe('When vote with valid input and valid date concurrently', () => {
+		const request_body = {
+			hkid: 'A123456(3)',
+			candidate: {
+				name: 'Michael Jordan'
+			}
+		};
+
+		test('201 - Successfully created for only 1 of the request', async () => {
+			function genRequest() {
+				return supertest(server)
+					.post(`/v1/campaigns/${campaign_record.id}/votes`)
+					.send(request_body);
+			}
+
+			const responses = await Promise.all([genRequest(), genRequest()]);
+
+			expect(
+				responses
+					.map(res => ({status: res.status, body: res.body}))
+					.sort()
+			).toMatchSnapshot('responses');
 
 			const {redis} = getServerDependencyMocks();
 			const updated_campaign = await redis.hgetall(
