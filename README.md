@@ -3,6 +3,7 @@
 # How to run?
 Make sure the followings are installed: 
 - `yarn`
+- `docker`
 - `docker-compose`
 - `node >= 10.15.0`
 
@@ -26,15 +27,15 @@ http://localhost:9023/docs
 ```
 
 # Architecture
+## Diagram
+![simple_voting_architecture](https://github.com/Duncan00/simple-voting/blob/master/docs/simple_voting_architecture.png)
+
 ## Frontend
 - A static ReactJS website is hosted by AWS s3 with CDN
 
 ## Backend
 - NodeJS RESTful API by Koa2 framework is hosted in Kubernetes (GKE)
 - Redis Cluster is used as database (with AOF, RDB turned on to persist data), which is capable to handle high voting throughput by sharding.
-
-## Architecture
-https://drive.google.com/file/d/1lAtIEehtKfHCw6WdYaNoPg-TQzksJPxx/view?usp=sharing
 
 ## Data structure
 - Campaign with vote counts of each candidate is stored as `Hash`
@@ -74,7 +75,7 @@ https://drive.google.com/file/d/1lAtIEehtKfHCw6WdYaNoPg-TQzksJPxx/view?usp=shari
   1. (Write side) Only write campaign (without vote count), and vote event to Redis Cluster
   2. (Heavy data processing in background) Indexing, vote counting are done by cronjob in background, and store result in view DB, say Elastic Search
   3. (Read side) Read/Query data only from the view DB
-  - Diagram: https://drive.google.com/file/d/1lAtIEehtKfHCw6WdYaNoPg-TQzksJPxx/view?usp=sharing
+![simple_voting_architecture](https://github.com/Duncan00/simple-voting/blob/master/docs/simple_voting_architecture_with_cqrs.png)
 - Typescript can be added for higher maintainability and easier development
 
 # References
