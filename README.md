@@ -20,7 +20,7 @@ yarn start
 - It will do setup and run the application in development env.
 - By default, the application is using port `9023`, and database is using ports `from 17000 to 17007`.
 - If port `9023` is in use, update port in `dev.env` to any deserved port.
-- If port `17000 to 17007` is in use, update out binding ports in `docker-redis-cluster/docker-compose.yml` to any deserved port.
+- If port `17000 to 17007` is in use, update out binding ports in `scripts/development/docker-redis-cluster/docker-compose.yml` to any deserved ports.
 - After successfully starting the server, API Documentation with Swagger is hosted here: 
 ```
 http://localhost:9023/docs
