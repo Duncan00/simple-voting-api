@@ -1,5 +1,15 @@
 FROM node:10.15.0-alpine
 
-EXPOSE 9003
+# Create app directory
+WORKDIR /usr/src/app
 
-CMD ["pm2-docker", "--no-daemon", "--raw", "scripts/startup/docker/pm2.json"]
+# Install app dependencies
+COPY package.json ./
+COPY yarn.lock ./
+RUN yarn install --production
+
+# Bundle app source
+COPY . .
+
+EXPOSE 9003
+CMD [ "node", "server/server.js" ]

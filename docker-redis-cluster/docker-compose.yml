@@ -3,14 +3,10 @@ services:
   redis-cluster:
     environment:
      IP: ${REDIS_CLUSTER_IP}
-     SENTINEL: ${REDIS_USE_SENTINEL}
-     STANDALONE: ${REDIS_USE_STANDALONE}
     build:
       context: ""
       args:
         redis_version: '4.0.14'
     hostname: server
     ports:
-      - '7000-7007:7000-7007'
       - '17000-17007:17000-17007'
-      - '15000-15002:15000-15002'
