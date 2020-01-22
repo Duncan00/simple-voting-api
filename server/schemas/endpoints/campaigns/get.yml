@@ -3,7 +3,10 @@ paths:
     get:
       tags:
         - Campaigns
-      summary: Get campaigns
+      summary: >-
+        Get campaigns
+          i. display campaigns within start/end time first and order by total no. of votes.
+          ii. display most recent ended campaign afterward
       parameters:
         - in: query
           name: hkid
@@ -26,3 +29,4 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response42201'
+

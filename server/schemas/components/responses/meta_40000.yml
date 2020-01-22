@@ -9,10 +9,6 @@ components:
             - 40000
           description: http status
           example: 40000
-        type:
-          type: string
-          description: error type
-          example: BadRequestError
         message:
           type: string
           description: http message

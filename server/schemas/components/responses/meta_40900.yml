@@ -9,10 +9,6 @@ components:
             - 40900
           description: http status
           example: 40900
-        type:
-          type: string
-          description: error type
-          example: ConflictError
         message:
           type: string
           description: http message

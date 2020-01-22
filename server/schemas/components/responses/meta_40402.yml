@@ -1,18 +1,18 @@
 components:
   schemas:
-    Meta42900:
+    Meta42201:
       type: object
       properties:
         code:
           type: number
           enum:
-            - 42900
+            - 40402
           description: http status
-          example: 42900
+          example: 40402
         message:
           type: string
           description: http message
-          example: Too Many Requests
+          example: Candidate is not found.
         errors:
           type: array
           items:

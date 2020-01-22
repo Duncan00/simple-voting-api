@@ -1,18 +1,18 @@
 components:
   schemas:
-    Meta42900:
+    Meta42201:
       type: object
       properties:
         code:
           type: number
           enum:
-            - 42900
+            - 42203
           description: http status
-          example: 42900
+          example: 42203
         message:
           type: string
           description: http message
-          example: Too Many Requests
+          example: HKID is invalid.
         errors:
           type: array
           items:

@@ -9,10 +9,6 @@ components:
             - 40100
           description: http status
           example: 40100
-        type:
-          type: string
-          description: error type
-          example: AuthenticationError
         message:
           type: string
           description: http message

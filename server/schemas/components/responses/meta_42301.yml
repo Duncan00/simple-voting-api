@@ -1,18 +1,18 @@
 components:
   schemas:
-    Meta42900:
+    Meta42201:
       type: object
       properties:
         code:
           type: number
           enum:
-            - 42900
+            - 42301
           description: http status
-          example: 42900
+          example: 42301
         message:
           type: string
           description: http message
-          example: Too Many Requests
+          example: Another vote with the same HKID for this campaign is in progress. Please try again later.
         errors:
           type: array
           items:

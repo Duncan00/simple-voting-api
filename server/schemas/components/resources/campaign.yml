@@ -14,11 +14,9 @@ components:
         start_date:
           type: string
           format: date
-          example: 2019-01-01
         end_date:
           type: string
           format: date
-          example: 2019-01-31
         candidates:
           type: array
           minItems: 1

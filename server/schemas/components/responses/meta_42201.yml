@@ -9,10 +9,6 @@ components:
             - 42201
           description: http status
           example: 42201
-        type:
-          type: string
-          description: error type
-          example: SchemaValidationError
         message:
           type: string
           description: http message

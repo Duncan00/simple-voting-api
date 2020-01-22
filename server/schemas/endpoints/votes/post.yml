@@ -4,6 +4,15 @@ paths:
       tags:
         - Votes
       summary: Vote a candidate of a campaign
+      parameters:
+        - in: path
+          name: id
+          description: UUID of campaign
+          schema:
+            type: string
+            example: 99989f7c-3375-4757-bfc8-ce388dc621b2
+            format: uuid
+          required: true
       requestBody:
         content:
           application/json:
