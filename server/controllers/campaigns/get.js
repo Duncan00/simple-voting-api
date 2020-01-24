@@ -57,7 +57,9 @@ function get({redis}) {
 		const sorted_active_campaigns = non_ended_db_campaigns
 			// Filter out not yet start campaigns
 			.filter(campaign =>
-				moment.utc().isSameOrAfter(campaign.start_date, 'days')
+				moment
+					.utc()
+					.isSameOrAfter(moment.utc(campaign.start_date), 'days')
 			)
 			// Sort by voted count for active campaigns
 			.sort(
