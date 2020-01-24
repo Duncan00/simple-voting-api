@@ -33,10 +33,10 @@ http://localhost:9023/docs
 ![simple_voting_architecture](https://github.com/Duncan00/simple-voting/blob/master/docs/simple_voting_architecture.png)
 
 ## Frontend
-- A static ReactJS website is hosted by AWS s3 with CDN
+- A ReactJS website with Redux [Simple Voting client](https://github.com/Duncan00/simple-voting-client)
 
 ## Backend
-- NodeJS RESTful API by Koa2 framework is hosted in Kubernetes (GKE)
+- NodeJS RESTful API by Koa2 framework
 - Redis Cluster is used as database (with AOF, RDB turned on to persist data), which is capable to handle high voting throughput by sharding.
 
 ## Data structure
@@ -64,6 +64,7 @@ http://localhost:9023/docs
 
 # Scalability
 ## Kubernetes (GKE)
+- Both API and client can be hosted on Kubernetes
 - Auto horizontal scale up of compute instances and pods can be set according to RPS (requests per second), cpu, memory usages, etc without downtime.
 
 ## Redis Cluster 
