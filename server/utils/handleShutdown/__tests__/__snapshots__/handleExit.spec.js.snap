@@ -28,7 +28,11 @@ Array [
 ]
 `;
 
-exports[`handleExit should gracefully shutdown: redis.quit 1`] = `Array []`;
+exports[`handleExit should gracefully shutdown: redis.quit 1`] = `
+Array [
+  Array [],
+]
+`;
 
 exports[`handleExit should skip if already shutting down: logger.info 1`] = `
 Array [

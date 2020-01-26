@@ -46,7 +46,8 @@ async function initServer() {
 			require('./utils/handleShutdown')({
 				server,
 				app,
-				logger: root_logger
+				logger: root_logger,
+				redis
 			});
 
 			server.keepAliveTimeout = 120 * 1000;

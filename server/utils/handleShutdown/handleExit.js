@@ -1,6 +1,6 @@
 'use strict';
 
-function handleExit({server, app, logger}) {
+function handleExit({server, app, logger, redis}) {
 	return function() {
 		logger.info('Signal received application starts shutdown');
 		if (!app.isTerminating) {
@@ -9,6 +9,8 @@ function handleExit({server, app, logger}) {
 			app.isTerminating = true;
 
 			return server.close(async () => {
+				await Promise.all([redis.quit()]);
+
 				logger.info('Application had gracefully shutdown');
 				process.exit();
 			});
