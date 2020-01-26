@@ -1,4 +1,4 @@
-# Simple-Voting
+# simple-voting-api
 
 # How to run?
 Make sure the followings are installed: 
