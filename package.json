@@ -51,7 +51,7 @@
     "koa-response-time": "^2.1.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "redlock": "^4.1.0",
     "swagger-ajv": "^3.0.0",
     "uuid": "^3.3.3",
